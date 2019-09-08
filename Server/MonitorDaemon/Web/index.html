@@ -1,0 +1,223 @@
+﻿
+<html>
+	<head>
+		<title>Remote Monitor</title>
+		 
+		<link rel="stylesheet" href="/css/jquery-ui.css">
+		<link rel="stylesheet" href="/css/verticaltabs.css">
+		<script src="/js/jquery-1.10.2.min.js"></script>
+		<script src="/js/jquery-ui.min.js"></script>
+
+		<script src="/js/raphael.2.1.0.min.js"></script>
+		<script src="/js/justgage.1.0.1.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="/css/jquery.multiselect.css"/>
+		<script src="/js/jquery.multiselect.min.js"></script>
+
+		<script src="/js/Chart.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="/css/MonitoringBase.css"/>
+		<script src="/js/MonitoringChart.js"></script>
+		<script>
+
+		$(document).ready(function(){
+			$("#ChartLoadingWaitDiv").hide();
+			//$(".WaitDiv").height = $(window).height() - $(".WaitDiv").offset().top - 80; 
+			//$(".WaitDivBackground").height = $(window).height() - $(".WaitDiv").offset().top - 80; 
+
+			$("#LoadingIndicator").hide();
+		    $( "#startDate" ).datepicker({
+		    	dateFormat: "yy/mm/dd",
+	            changeMonth: true,
+	            changeYear: true
+        	});
+			$( "#startDate" ).datepicker('setDate', 'today');
+		    $( "#endDate" ).datepicker({
+		    	dateFormat: "yy/mm/dd",
+	            changeMonth: true,
+	            changeYear: true
+	        });
+			$( "#endDate" ).datepicker('setDate', 'today');
+
+			$("#contentTabs").tabs();
+			$("#configTabs").accordion({heightStyle: "fill"});
+
+			//$("#contentTabs").tabs({
+			//	heightStyle: "fill"
+			//});
+			//$("#configTabs").tabs({
+			//	heightStyle: "fill"
+			//});
+
+			//$("#contentTabs").addClass('tabs-nested');
+			//$("#configTabs").addClass('ui-tabs-vertical ui-helper-clearfix');
+
+			setTimeout("RetrieveDashboardItems();", 2000);
+
+
+			$(window).resize(function(){
+				ResizeConfig();
+			});
+			ResizeConfig();
+		});
+
+		var gauges = [];
+		function ResizeConfig()
+		{
+			//alert("resize config entry");
+		    var newHeight = $("html").height() - $("#contentTabHeader").height() - $("#TopDiv").height() + "px";
+		    $("#configTabs").css("height", newHeight);
+		    //alert(newHeight);
+		}
+		function RetrieveDashboardItems()
+		{
+			if ($("#contentTabs").tabs('option', 'active') == 0)
+			{
+				//alert("updating dashboard");
+				//$("#LoadingIndicator").show();
+				$.getJSON("DashboardQuery.json", function(data) {
+					if (gauges.length == 0)
+					{
+						var GaugeContent = "";
+
+						$.each(data.Values, function(index, value){
+							GaugeContent += "<div id='DeviceGauge" + index + "' class='Gauge' style='width:200px;height:200px;'></div>";
+						});
+
+						$("#DashboardControls").html(GaugeContent);
+
+						$.each(data.Values, function(index, value){
+							var g = new JustGage({
+								id: 'DeviceGauge' + index,
+								value: value.Value,
+								min: value.Min,
+								max: value.Max,
+								title: value.Name,
+								label:  value.Suffix,
+								showInnerShadow: true
+							});
+							gauges.push(g);
+						});
+
+					}
+					else
+					{
+						$.each(data.Values, function(index, value){
+							gauges[index].refresh(value.Value);
+						});
+					}
+				});
+			}
+			//$("#LoadingIndicator").hide();
+			setTimeout("RetrieveDashboardItems();", 5000);
+		}
+
+		function LoadConfigValues()
+		{
+			var globalsettingscontent = "";
+
+			$.getJSON("GlobalSettingsList.json", function(data) {
+				$.each(data.Values, function(index, value){
+					
+					globalsettingscontent += "<div class='ConfigContentDiv'><p class='" + key + "'>" + name + "</p>";
+					globalsettingscontent += "<input id='globalsetting-" + key + "' type='text' class='SettingValue' ";
+					globalsettingscontent += " value='" + value + "'/></div>";
+				});
+			});
+
+			$("ConfigGlobalParams").html(gloablsettingscontent);
+		}
+
+		var deviceMapData;
+		var deviceTypeData = [];
+
+		</script>
+	</head>
+	<body>
+		<div class="MainDiv">
+			<div id="TopDiv" class="TopDiv">
+				<div class="TitleDiv">Remote Monitor</div>
+				<div class="LogoDiv"/>
+			</div>
+			<div id="contentTabs" class="ContentDiv">
+				<ul id="contentTabHeader">
+					<li><a href="#tabs-dashboard">Dashboard</a></li>
+					<li><a href="#tabs-config">Configuration</a></li>
+					<li><a href="#tabs-charts">Charts</a></li>
+					<li><a href="#tabs-camera">Cameras</a></li>
+				</ul>
+				<div id="tabs-dashboard" class="ContentPanel">
+					<div id="DashboardControls"><div>Gauges are currently loading.  Please wait...</div></div>
+				</div>
+				<div id="tabs-charts" class="ContentPanel, CenterContent">
+					<div id="DeviceChartQueryDiv" class="DeviceChartQuery, CenterContent">
+						<div class="DeviceChartParam">
+							<p class="Label">Start Date</p>
+							<input id="startDate" type="text"/>
+						</div>
+						<div class="DeviceChartParam">
+							<p class="Label">End Date</p>
+							<input id="endDate" type="text"/>
+						</div>
+						<div class="DeviceChartParam">
+							<p class="Label">Device Types</p>
+							<select id="DeviceTypeSelectList" name="Device Types" multiple="multiple">
+								
+							</select>
+						</div>
+						<div class="DeviceChartParam">
+							<p class="Label">Devices</p>
+							<select id="DeviceMapSelectList" name="Device Maps" multiple="multiple">
+								
+							</select>
+						</div>
+						<div class="DeviceChartParam">
+							<input id="RunChartButton" type="button" class="BigButton" name="Create Chart" value="Chart"/>
+						</div>
+						<div class="DeviceChartParam">
+							<input id="RunCSVButton" type="button" class="BigButton" name="Export CSV" value="CSV"/>
+						</div>
+						<div class="DeviceChartParam">
+							<input id="ClearChartButton" type="button" class="BigButton" name="Clear Chart" value="Clear"/>
+						</div>
+
+						<iframe id="CSVDownloadFrame" style="display:none;width:0px;height:0px;"></iframe>
+					</div>
+					<div id="DeviceChartResultDiv" class="DeviceChartResults, CenterContent">
+					</div>
+					<div id="ChartLoadingWaitDiv" class="WaitDiv">
+						<div  class="WaitDivBackground"></div>
+						<div id="ChartLoadingWaitBox" class="WaitDivDialog">
+							<p>Chart is loading.  Please wait...</p>
+						</div>
+					</div>
+				</div>
+				<div id="tabs-camera" class="ContentPanel">
+					<div id="cameraList" class="ContentDiv">
+					<p>Coming Soon...</p>
+					</div>
+				</div>
+				<div id="tabs-config" class="ContentPanel">
+					<div id="configTabs" style="height:100%;" class="ConfigContentDiv">
+<!--						<ul>
+							<li><a href="#tabs-monitor">Settings</a></li>
+							<li><a href="#tabs-devices">Logging Devices</a></li>
+							<li><a href="#tabs-log">Logged Data</a></li>
+						</ul>-->
+						<h3>Settings</h3>
+						<div id="ConfigGlobalParams">
+						</div>
+
+						<h3>Logging Devices</h3>
+						<div>
+						</div>
+
+						<h3>Logged Data</h3>
+						<div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

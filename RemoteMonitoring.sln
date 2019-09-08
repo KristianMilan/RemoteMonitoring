@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{ED1DCA5A-CB16-48F3-A405-EF04991D12D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{1E6E28B7-AD6D-47CE-B5A6-C1E9F68A345F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B675C113-072E-485B-909D-3F8A2318AAFB}"
+	ProjectSection(SolutionItems) = preProject
+		SetupInfo.txt = SetupInfo.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorDaemon", "Server\MonitorDaemon\MonitorDaemon.csproj", "{8985CA14-21C2-4668-A022-0E466116B18C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorLib", "Core\MonitorLib\MonitorLib.csproj", "{7AC06509-0296-47F1-96BF-E156EC198B5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8985CA14-21C2-4668-A022-0E466116B18C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8985CA14-21C2-4668-A022-0E466116B18C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8985CA14-21C2-4668-A022-0E466116B18C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8985CA14-21C2-4668-A022-0E466116B18C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC06509-0296-47F1-96BF-E156EC198B5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC06509-0296-47F1-96BF-E156EC198B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC06509-0296-47F1-96BF-E156EC198B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC06509-0296-47F1-96BF-E156EC198B5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8985CA14-21C2-4668-A022-0E466116B18C} = {1E6E28B7-AD6D-47CE-B5A6-C1E9F68A345F}
+		{7AC06509-0296-47F1-96BF-E156EC198B5B} = {ED1DCA5A-CB16-48F3-A405-EF04991D12D8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75F71689-782A-4106-A55A-C350AEE803F6}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Server\AquaponicsDaemon\AquaponicsDaemon.csproj
+	EndGlobalSection
+EndGlobal

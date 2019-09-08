@@ -1,0 +1,223 @@
+﻿
+	body{
+		background-color:white;
+		width:95%;
+	}
+
+	h1{
+		font-size:2em;
+	}
+	h2{
+		font-size:1.5em;
+	}
+	h3{
+		font-size:0.8em;
+	}
+	h4{
+		font-size:0.6em;
+	}
+
+	div.MainDiv{
+		width:100%;
+		float:left;
+		clear:both;
+		font-size:1em;
+		z-index:10;
+	}
+
+	div.TopDiv{
+		width:100%;
+		float:left;
+		clear:both;
+		height:100px;
+		margin-bottom:20px;
+		padding-bottom:20px;
+		z-index:10;
+	}
+
+	div.LogoDiv{
+		width:60px;
+		height:60px;
+		background-image: url("/images/gauge.jpg");
+		background-size: 60px 60px;
+		background-repeat:none;
+		position:absolute;
+		left:0px;
+		top:0px;
+	}
+
+	div.TitleDiv{
+		font-weight:bold;
+		font-size:2em;
+		padding-left:65px;
+		padding-right:5px;
+		height:60px;
+		width:100%;
+	}
+
+	div.ContentDiv{
+		z-index:10;
+		width:100%;
+		float:left;
+		clear:both;
+	}
+	div.ConfigContentDiv{
+		z-index:10;
+		width:100%;
+		float:left;
+		clear:both;
+	}
+	div.ContentPanel{
+		font-size:0.8em;
+		width:100%;
+		float:left;
+		clear:both;
+		margin:2px !important;
+		padding:2px !important;
+		z-index:10;
+	}
+	div.DeviceChartTab{
+		width:100%;
+	}
+	div.DeviceChartQuery{
+		width:100%;
+		float:left;
+		clear:both;
+		margin-left:-10px;
+		margin-right:-10px;
+		margin-top:-10px;
+		padding-left:-10px;
+		padding-right:-10px;
+		padding-top:-10px;
+	}
+	div.DeviceChartParam{
+		height:50px;
+		float:left;
+		clear:none;
+		margin:1px;
+		padding:1px;
+		font-size:0.8em;
+		border-color:silver;
+		border-width:2px;
+		border-style:solid;
+		min-width:60px;
+	}
+	div.DeviceChartResults{
+		position:absolute;
+		width:99%;
+		height:100%;
+		float:left;
+		clear:both;
+		margin:0px;
+		padding:0px;
+	}
+	div.WaitDiv{
+		position:absolute;
+		z-index:255;
+		width:99%;
+		min-height:100%;
+		height:auto !important;
+		height:100%;
+	}
+	div.WaitDivBackground{
+		background-color:black;
+		position: absolute;
+		z-index:255;
+		opacity:0.4;
+		filter: alpha(opacity=40);
+		width:99%;
+		min-height:100%;
+		height:auto !important;
+		height:100%;
+	    display: -webkit-flex; /* Safari */
+	    -webkit-justify-content: space-around; /* Safari 6.1+ */
+	    display: flex;
+	    justify-content: space-around;
+	}
+	div.WaitDivDialog{
+	    font-color:black;
+	    border-color:silver;
+	    position: absolute;
+		z-index:255;
+	    border-width:3px;
+	    border-style:solid;
+	    font-size:1.2em;
+		background-color:white;
+		width:600px;
+		height:200px;
+		margin-left:-300px;
+		padding-left:-300px;
+		align-content:center;
+	}
+	p.WaitDivDialog{
+		width:100%;
+		height:100%;
+		align:center;
+		vertical-align:middle;
+		}
+	.FullWidth{
+		width:100%;
+	}
+	.FloatLeft{
+		float:left;
+		clear:none;
+	}
+	.HorizontalMargin{
+		margin-left:5px;
+		margin-right:5px;
+		padding-left:5px;
+		padding-right:5px;
+	}
+	.CenterContent{
+	    display: -webkit-flex; /* Safari */
+	    -webkit-justify-content: space-around; /* Safari 6.1+ */
+	    display: flex;
+	    justify-content: space-around;
+	}
+	div.SettingDiv{
+		float:left;
+		clear:both;
+		width:100%;
+	}
+	p.SettingKey{
+	    float:left;
+	    clear:left;
+	    width:20%;
+	}
+	.SettingValue
+	{
+		float:left;
+		clear:right;
+		width:80%;
+	}
+
+	div.Gauge{
+	    float:left;
+	    clear:none;
+	    margin:5px;
+	    width:200px;
+	    height:200px;
+	    font-size:1.2em;
+	    font-color:black;
+	    border-style:solid;
+	    border-thickness:2px;
+	    border-color:silver;
+	    -webkit-border-radius: 50px;
+		-moz-border-radius: 50px;
+		border-radius: 50px;
+	}
+	p.Label{
+		float:left;
+		clear:both;
+		margin:0px;
+		padding:0px;
+		font-size:1.0em;
+		font-color:black;
+	}
+	.BigButton{
+		font-size:1.2em;
+		height:100%;
+		width:100%;
+		padding-left:10px;
+		padding-right:10px;
+	}

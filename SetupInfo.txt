@@ -1,0 +1,5 @@
+To enable DS18B20 use the following tutorial
+http://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/
+
+In order to set up daemon mode use the following instructions:
+https://www.raspberrypi.org/documentation/linux/usage/systemd.md

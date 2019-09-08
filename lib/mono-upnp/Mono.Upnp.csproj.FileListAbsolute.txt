@@ -1,0 +1,3 @@
+C:\Users\Jay\Downloads\mono-upnp-master\src\Mono.Upnp\Mono.Upnp\obj\Release\Mono.Upnp.csprojResolveAssemblyReference.cache
+C:\Users\Jay\Downloads\mono-upnp-master\bin\Mono.Upnp.dll
+C:\Users\Jay\Downloads\mono-upnp-master\src\Mono.Upnp\Mono.Upnp\obj\Release\Mono.Upnp.dll
