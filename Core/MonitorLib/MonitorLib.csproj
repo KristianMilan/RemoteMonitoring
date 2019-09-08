@@ -54,6 +54,9 @@
     <Reference Include="Raspberry.System, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Raspberry.System.2.1\lib\net40\Raspberry.System.dll</HintPath>
     </Reference>
+    <Reference Include="RaspberryCam, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RaspberryCam.1.0.0.0\lib\net40\RaspberryCam.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Mono.Ssdp">
       <HintPath>..\..\lib\mono-upnp\Mono.Ssdp.dll</HintPath>
@@ -73,9 +76,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="RaspberryCam">
-      <HintPath>..\..\packages\RaspberryCam.1.0.0.0\lib\net40\RaspberryCam.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations">
       <Private>True</Private>
     </Reference>
@@ -123,13 +123,15 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Readme.txt" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="RemoteMonitor.s3db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Readme.txt" />
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>echo ---- Copying dlls from $(ProjectDir)bin\$(ConfigurationName) into $(SolutionDir)Server\MonitorDaemon\bin\$(ConfigurationName) ----
